@@ -1,17 +1,17 @@
-const {MINIFY} = process.env;
+const { MINIFY } = process.env;
 const minified = MINIFY === 'true';
-const outputFile = minified ? 'dist/mapbox-gl-draw.js' : 'dist/mapbox-gl-draw-unminified.js';
+const outputFile = minified ? 'dist/maplibre-gl-draw-plus.js' : 'dist/maplibre-gl-draw-plus-unminified.js';
 
 import replace from '@rollup/plugin-replace';
 import buble from '@rollup/plugin-buble';
-import {terser} from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: ['index.js'],
   output: {
-    name: 'MapboxDraw',
+    name: 'MaplibreDraw',
     file: outputFile,
     format: 'umd',
     sourcemap: true,
@@ -23,7 +23,7 @@ export default {
       'process.env.NODE_ENV': "'browser'",
       preventAssignment: true
     }),
-    buble({transforms: {dangerousForOf: true}, objectAssign: "Object.assign"}),
+    buble({ transforms: { dangerousForOf: true }, objectAssign: "Object.assign" }),
     minified ? terser() : false,
     resolve({
       browser: true,

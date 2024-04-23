@@ -60,7 +60,7 @@ test('Options test', (t) => {
   });
 
   t.test('hide all controls', (t) => {
-    const Draw = new MapboxDraw({displayControlsDefault: false});
+    const Draw = new MapboxDraw({ displayControlsDefault: false });
     const defaultOptions = {
       defaultMode: 'simple_select',
       modes,
@@ -86,7 +86,7 @@ test('Options test', (t) => {
   });
 
   t.test('hide controls but show point', (t) => {
-    const Draw = new MapboxDraw({displayControlsDefault: false, controls: {point:true}});
+    const Draw = new MapboxDraw({ displayControlsDefault: false, controls: { point: true } });
     const defaultOptions = {
       defaultMode: 'simple_select',
       modes,
@@ -113,7 +113,7 @@ test('Options test', (t) => {
   });
 
   t.test('hide only point control', (t) => {
-    const Draw = new MapboxDraw({ controls: {point:false}});
+    const Draw = new MapboxDraw({ controls: { point: false } });
     const defaultOptions = {
       defaultMode: 'simple_select',
       modes,
@@ -167,26 +167,28 @@ test('Options test', (t) => {
   });
 
   t.test('custom styles', (t) => {
-    const Draw = new MapboxDraw({styles: [{
-      'id': 'custom-polygon',
-      'type': 'fill',
-      'filter': ['all', ['==', '$type', 'Polygon']],
-      'paint': {
-        'fill-color': '#fff'
-      }
-    }, {
-      'id': 'custom-point',
-      'type': 'circle',
-      'filter': ['all', ['==', '$type', 'Point']],
-      'paint': {
-        'circle-color': '#fff'
-      }
-    }]});
+    const Draw = new MapboxDraw({
+      styles: [{
+        'id': 'custom-polygon',
+        'type': 'fill',
+        'filter': ['all', ['==', '$type', 'Polygon']],
+        'paint': {
+          'fill-color': '#fff'
+        }
+      }, {
+        'id': 'custom-point',
+        'type': 'circle',
+        'filter': ['all', ['==', '$type', 'Point']],
+        'paint': {
+          'circle-color': '#fff'
+        }
+      }]
+    });
 
     const styles = [
       {
         'id': 'custom-polygon.cold',
-        'source': 'mapbox-gl-draw-cold',
+        'source': 'maplibre-gl-draw-cold',
         'type': 'fill',
         'filter': ['all', ['==', '$type', 'Polygon']],
         'paint': {
@@ -195,7 +197,7 @@ test('Options test', (t) => {
       },
       {
         'id': 'custom-point.cold',
-        'source': 'mapbox-gl-draw-cold',
+        'source': 'maplibre-gl-draw-cold',
         'type': 'circle',
         'filter': ['all', ['==', '$type', 'Point']],
         'paint': {
@@ -204,7 +206,7 @@ test('Options test', (t) => {
       },
       {
         'id': 'custom-polygon.hot',
-        'source': 'mapbox-gl-draw-hot',
+        'source': 'maplibre-gl-draw-hot',
         'type': 'fill',
         'filter': ['all', ['==', '$type', 'Polygon']],
         'paint': {
@@ -213,7 +215,7 @@ test('Options test', (t) => {
       },
       {
         'id': 'custom-point.hot',
-        'source': 'mapbox-gl-draw-hot',
+        'source': 'maplibre-gl-draw-hot',
         'type': 'circle',
         'filter': ['all', ['==', '$type', 'Point']],
         'paint': {

@@ -1,6 +1,6 @@
 /* eslint no-shadow:[0] */
 import test from 'tape';
-import {spy} from 'sinon';
+import { spy } from 'sinon';
 import * as Constants from '../src/constants';
 import MapboxDraw from '../index';
 import createMap from './utils/create_map';
@@ -238,7 +238,7 @@ test('Draw.add -- existing feature with changed properties', (t) => {
   let point = Draw.get(id);
 
   afterNextRender(() => {
-    point.properties = {'testing': 123};
+    point.properties = { 'testing': 123 };
     Draw.add(point);
     point = Draw.get(id);
     t.equals('testing', Object.keys(point.properties)[0]);
@@ -363,13 +363,13 @@ test('Draw.changeMode to select and de-select pre-existing features', (t) => {
   const [lineId] = Draw.add(getGeoJSON('line'));
   const [pointId] = Draw.add(getGeoJSON('point'));
 
-  const returnA = Draw.changeMode('simple_select', { featureIds: [polygonId, lineId]});
+  const returnA = Draw.changeMode('simple_select', { featureIds: [polygonId, lineId] });
   t.equals(returnA, Draw, 'returns Draw instance');
   t.equals(Draw.getMode(), 'simple_select', 'changed to simple_select');
   t.deepEquals(Draw.getSelectedIds(), [polygonId, lineId],
     'polygon and line are selected');
 
-  const returnB = Draw.changeMode('simple_select', { featureIds: [polygonId, lineId]});
+  const returnB = Draw.changeMode('simple_select', { featureIds: [polygonId, lineId] });
   t.equals(returnB, Draw, 'returns Draw instance');
   t.deepEquals(Draw.getSelectedIds(), [polygonId, lineId],
     'polygon and line are still selected');
@@ -404,14 +404,15 @@ test('Draw.modes', (t) => {
   t.equal(Draw.modes.DRAW_LINE_STRING, Constants.modes.DRAW_LINE_STRING, 'draw_line_string');
   t.equal(Draw.modes.DRAW_POLYGON, Constants.modes.DRAW_POLYGON, 'draw_polygon');
   t.equal(Draw.modes.STATIC, Constants.modes.STATIC, 'static');
-  t.equal(getPublicMemberKeys(Draw.modes).length, 6, 'no unexpected modes');
+  t.equal(Draw.modes.DRAW_RECTANGLE, Constants.modes.DRAW_RECTANGLE, 'draw_rectangle');
+  t.equal(getPublicMemberKeys(Draw.modes).length, 7, 'no unexpected modes');
   t.end();
 });
 
 test('Draw.combineFeatures -- polygon + polygon = multiploygon', (t) => {
   const [polygonId] = Draw.add(getGeoJSON('polygon'));
   const [polygon2Id] = Draw.add(getGeoJSON('polygon2'));
-  Draw.changeMode('simple_select', { featureIds: [polygonId, polygon2Id]});
+  Draw.changeMode('simple_select', { featureIds: [polygonId, polygon2Id] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 1, 'can combine two features');
@@ -425,7 +426,7 @@ test('Draw.combineFeatures -- polygon + polygon = multiploygon', (t) => {
 test('Draw.combineFeatures -- point + point = multipoint', (t) => {
   const [pointId] = Draw.add(getGeoJSON('point'));
   const [point2Id] = Draw.add(getGeoJSON('point2'));
-  Draw.changeMode('simple_select', { featureIds: [pointId, point2Id]});
+  Draw.changeMode('simple_select', { featureIds: [pointId, point2Id] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 1, 'can combine two features');
@@ -439,7 +440,7 @@ test('Draw.combineFeatures -- point + point = multipoint', (t) => {
 test('Draw.combineFeatures -- linestring + linestring = multilinestring', (t) => {
   const [lineId] = Draw.add(getGeoJSON('line'));
   const [line2Id] = Draw.add(getGeoJSON('line2'));
-  Draw.changeMode('simple_select', { featureIds: [lineId, line2Id]});
+  Draw.changeMode('simple_select', { featureIds: [lineId, line2Id] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 1, 'can combine two features');
@@ -454,7 +455,7 @@ test('Draw.combineFeatures -- linestring + linestring = multilinestring', (t) =>
 test('Draw.combineFeatures -- point + multipoint = multipoint', (t) => {
   const [pointId] = Draw.add(getGeoJSON('point'));
   const [multipointId] = Draw.add(getGeoJSON('multiPoint'));
-  Draw.changeMode('simple_select', { featureIds: [pointId, multipointId]});
+  Draw.changeMode('simple_select', { featureIds: [pointId, multipointId] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 1, 'can combine two features');
@@ -469,7 +470,7 @@ test('Draw.combineFeatures -- point + multipoint = multipoint', (t) => {
 test('Draw.combineFeatures -- return on non-similar features', (t) => {
   const [lineId] = Draw.add(getGeoJSON('line'));
   const [polygonId] = Draw.add(getGeoJSON('polygon'));
-  Draw.changeMode('simple_select', { featureIds: [lineId, polygonId]});
+  Draw.changeMode('simple_select', { featureIds: [lineId, polygonId] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 2, 'should not combine non similar features');
@@ -480,7 +481,7 @@ test('Draw.combineFeatures -- return on non-similar features', (t) => {
 test('Draw.combineFeatures -- do nothing on non-similar features', (t) => {
   const [lineId] = Draw.add(getGeoJSON('line'));
   const [polygonId] = Draw.add(getGeoJSON('polygon'));
-  Draw.changeMode('simple_select', { featureIds: [lineId, polygonId]});
+  Draw.changeMode('simple_select', { featureIds: [lineId, polygonId] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 2, 'should not combine non similar features');
@@ -491,7 +492,7 @@ test('Draw.combineFeatures -- do nothing on non-similar features', (t) => {
 test('Draw.combineFeatures -- work for multifeature + feature', (t) => {
   const [multipolygonId] = Draw.add(getGeoJSON('multiPolygon'));
   const [polygonId] = Draw.add(getGeoJSON('polygon'));
-  Draw.changeMode('simple_select', { featureIds: [polygonId, multipolygonId]});
+  Draw.changeMode('simple_select', { featureIds: [polygonId, multipolygonId] });
 
   Draw.combineFeatures();
   t.equals(Draw.getAll().features.length, 1, 'should work for multifeature + feature');
@@ -512,7 +513,7 @@ test('Draw.combineFeatures -- should do nothing if nothing is selected', (t) => 
 
 test('Draw.uncombineFeatures -- multilinestring', (t) => {
   const [multiLineStringId] = Draw.add(getGeoJSON('multiLineString'));
-  Draw.changeMode('simple_select', { featureIds: [multiLineStringId]});
+  Draw.changeMode('simple_select', { featureIds: [multiLineStringId] });
 
   Draw.uncombineFeatures();
   const featuresInDraw = Draw.getAll().features;
@@ -533,7 +534,7 @@ test('Draw.uncombineFeatures -- multilinestring', (t) => {
 
 test('Draw.uncombineFeatures -- multipolygon', (t) => {
   const [multipolygon2Id] = Draw.add(getGeoJSON('multiPolygon2'));
-  Draw.changeMode('simple_select', { featureIds: [multipolygon2Id]});
+  Draw.changeMode('simple_select', { featureIds: [multipolygon2Id] });
 
   Draw.uncombineFeatures();
 
@@ -555,7 +556,7 @@ test('Draw.uncombineFeatures -- multipolygon', (t) => {
 
 test('Draw.uncombineFeatures -- multipoint', (t) => {
   const [multipointId] = Draw.add(getGeoJSON('multiPoint'));
-  Draw.changeMode('simple_select', { featureIds: [multipointId]});
+  Draw.changeMode('simple_select', { featureIds: [multipointId] });
 
   Draw.uncombineFeatures();
 
@@ -589,7 +590,7 @@ test('Draw.uncombineFeatures -- should do nothing if nothing is selected', (t) =
 test('Draw.uncombineFeatures -- should do nothing if nothing if only non multifeature is selected', (t) => {
   const [polygonId] = Draw.add(getGeoJSON('polygon'));
   const [pointId] = Draw.add(getGeoJSON('point'));
-  Draw.changeMode('simple_select', { featureIds: [polygonId, pointId]});
+  Draw.changeMode('simple_select', { featureIds: [polygonId, pointId] });
 
   Draw.uncombineFeatures();
   t.equals(Draw.getAll().features.length, 2, 'should do nothing if nothing is selected');

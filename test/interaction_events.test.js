@@ -2,12 +2,13 @@
 
 import test from 'tape';
 import xtend from 'xtend';
-import {spy} from 'sinon';
+import { spy } from 'sinon';
 import MapboxDraw from '../index';
 import click from './utils/mouse_click';
 import createMap from './utils/create_map';
 import createAfterNextRender from './utils/after_next_render';
 import makeMouseEvent from './utils/make_mouse_event';
+
 
 const container = document.createElement('div');
 document.body.appendChild(container);
@@ -17,7 +18,7 @@ const afterNextRender = createAfterNextRender(map);
 const Draw = new MapboxDraw();
 const onAdd = Draw.onAdd.bind(Draw);
 let controlGroup = null;
-Draw.onAdd = function(m) {
+Draw.onAdd = function (m) {
   controlGroup = onAdd(m);
   return controlGroup;
 };
@@ -34,10 +35,10 @@ import {
 } from './utils/key_events';
 
 function runTests() {
-  const pointButton = controlGroup.getElementsByClassName('mapbox-gl-draw_point')[0];
-  const lineCutton = controlGroup.getElementsByClassName('mapbox-gl-draw_line')[0];
-  const trashButton = controlGroup.getElementsByClassName('mapbox-gl-draw_trash')[0];
-  const polygonEutton = controlGroup.getElementsByClassName('mapbox-gl-draw_polygon')[0];
+  const pointButton = controlGroup.getElementsByClassName('maplibre-gl-draw_point')[0];
+  const lineCutton = controlGroup.getElementsByClassName('maplibre-gl-draw_line')[0];
+  const trashButton = controlGroup.getElementsByClassName('maplibre-gl-draw_trash')[0];
+  const polygonEutton = controlGroup.getElementsByClassName('maplibre-gl-draw_polygon')[0];
 
   // The sequence of these tests matters: each uses state established
   // in the prior tests. These variables keep track of bits of that state.
@@ -307,7 +308,7 @@ function runTests() {
         features: [lineB],
         points: [{
           geometry: {
-            coordinates: [ 40, 20 ],
+            coordinates: [40, 20],
             type: 'Point'
           },
           properties: {},
@@ -601,7 +602,7 @@ function runTests() {
         features: [polygonB],
         points: [{
           geometry: {
-            coordinates: [ 20, -20 ],
+            coordinates: [20, -20],
             type: 'Point'
           },
           properties: {},

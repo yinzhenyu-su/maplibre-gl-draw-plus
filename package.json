@@ -1,13 +1,13 @@
 {
-  "name": "@mapbox/mapbox-gl-draw",
+  "name": "maplibre-gl-draw-plus",
   "version": "1.4.3",
   "description": "A drawing component for Mapbox GL JS",
-  "homepage": "https://github.com/mapbox/mapbox-gl-draw",
+  "homepage": "https://github.com/yinzhenyu-su/maplibre-gl-draw-plus",
   "author": "mapbox",
   "license": "ISC",
-  "main": "dist/mapbox-gl-draw.js",
-  "browser": "dist/mapbox-gl-draw.js",
-  "style": "dist/mapbox-gl-draw.css",
+  "main": "dist/maplibre-gl-draw-plus.js",
+  "browser": "dist/maplibre-gl-draw-plus.js",
+  "style": "dist/maplibre-gl-draw.css",
   "scripts": {
     "docs": "run-s docs-modes-life-cycle docs-modes-get-and-set",
     "docs-modes-get-and-set": "documentation readme --readme-file ./docs/MODES.md -s \"Setters and Getters\" src/modes/mode_interface_accessors.js --shallow",
@@ -26,11 +26,12 @@
     "start": "run-p build-token watch watch-bench start-server"
   },
   "files": [
-    "dist/mapbox-gl-draw*"
+    "dist/maplibre-gl-draw-plus*",
+    "dist/maplibre-gl-draw.css"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mapbox/mapbox-gl-draw.git"
+    "url": "git@github.com:yinzhenyu-su/maplibre-gl-draw-plus.git"
   },
   "keywords": [
     "webgl",
@@ -39,7 +40,7 @@
     "drawing"
   ],
   "bugs": {
-    "url": "https://github.com/mapbox/mapbox-gl-draw/issues"
+    "url": "https://github.com/mapbox/maplibre-gl-draw/issues"
   },
   "nyc": {
     "sourceMap": false,
@@ -51,7 +52,7 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/register": "^7.22.15",
     "@mapbox/cloudfriend": "^6.0.0",
-    "@mapbox/mapbox-gl-draw-static-mode": "^1.0.1",
+    "@mapbox/maplibre-gl-draw-static-mode": "^1.0.1",
     "@rollup/plugin-buble": "^1.0.2",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-json": "^6.0.0",
@@ -80,6 +81,7 @@
     "@mapbox/geojson-normalize": "^0.0.1",
     "@mapbox/point-geometry": "^0.1.0",
     "hat": "0.0.3",
+    "jsdom": "^24.0.0",
     "lodash.isequal": "^4.5.0",
     "xtend": "^4.0.2"
   }

@@ -1,7 +1,7 @@
 /* eslint no-shadow:[0] */
 import test from 'tape';
 import MapboxDraw from '../index';
-import {spy} from 'sinon';
+import { spy } from 'sinon';
 import setupAfterNextRender from './utils/after_next_render';
 import makeMouseEvent from './utils/make_mouse_event';
 import getGeoJSON from './utils/get_geojson';
@@ -25,13 +25,13 @@ test('static', (t) => {
 
   const afterNextRender = setupAfterNextRender(map);
 
-  const cleanUp = function(cb) {
+  const cleanUp = function (cb) {
     Draw.deleteAll();
     map.fire.resetHistory();
     if (cb) cb();
   };
 
-  const getFireArgs = function() {
+  const getFireArgs = function () {
     const args = [];
     for (let i = 0; i < map.fire.callCount; i++) {
       args.push(map.fire.getCall(i).args);
@@ -40,7 +40,7 @@ test('static', (t) => {
   };
 
   t.test('static - init map for tests', (t) => {
-    const done = function() {
+    const done = function () {
       map.off('load', done);
       t.end();
     };
