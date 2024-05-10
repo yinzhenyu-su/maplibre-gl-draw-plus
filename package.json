@@ -1,9 +1,9 @@
 {
   "name": "maplibre-gl-draw-plus",
-  "version": "1.4.3",
-  "description": "A drawing component for Mapbox GL JS",
+  "version": "1.4.4",
+  "description": "A drawing component for Maplibre GL JS",
   "homepage": "https://github.com/yinzhenyu-su/maplibre-gl-draw-plus",
-  "author": "mapbox",
+  "author": "yinzhenyu-su",
   "license": "ISC",
   "main": "dist/maplibre-gl-draw-plus.js",
   "browser": "dist/maplibre-gl-draw-plus.js",
@@ -27,8 +27,10 @@
   },
   "files": [
     "dist/maplibre-gl-draw-plus*",
-    "dist/maplibre-gl-draw.css"
+    "dist/maplibre-gl-draw.css",
+    "dist/index.d.ts"
   ],
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git@github.com:yinzhenyu-su/maplibre-gl-draw-plus.git"
@@ -52,7 +54,7 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/register": "^7.22.15",
     "@mapbox/cloudfriend": "^6.0.0",
-    "@mapbox/maplibre-gl-draw-static-mode": "^1.0.1",
+    "@mapbox/mapbox-gl-draw-static-mode": "^1.0.1",
     "@rollup/plugin-buble": "^1.0.2",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-json": "^6.0.0",
@@ -69,6 +71,7 @@
     "nyc": "15.1.0",
     "opener": "^1.5.2",
     "rollup": "^2.79.0",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-terser": "^7.0.2",
     "sinon": "^15.0.3",
     "st": "^3.0.0",
@@ -80,6 +83,8 @@
     "@mapbox/geojson-extent": "^1.0.1",
     "@mapbox/geojson-normalize": "^0.0.1",
     "@mapbox/point-geometry": "^0.1.0",
+    "@types/geojson": "^7946.0.14",
+    "@types/mapbox-gl": "^3.1.0",
     "hat": "0.0.3",
     "jsdom": "^24.0.0",
     "lodash.isequal": "^4.5.0",
