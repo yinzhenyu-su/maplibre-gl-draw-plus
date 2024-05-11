@@ -14,7 +14,7 @@ export default {
   output: {
     name: 'MaplibreDraw',
     file: outputFile,
-    format: 'umd',
+    format: 'esm',
     sourcemap: true,
     indent: false
   },
